@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Encryption & Decryption</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: navy;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            color: navy;
+            padding: 20px;
+            border-radius: 10px;
+            width: 400px;
+            text-align: center;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+        .hidden {
+            display: none;
+        }
+        .btn {
+            background-color: navy;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .btn:hover {
+            background-color: darkblue;
+        }
+    </style>
+    <script>
+        function showForm(type) {
+            document.getElementById('encrypt-form').classList.add('hidden');
+            document.getElementById('decrypt-form').classList.add('hidden');
+            if (type === 'encrypt') {
+                document.getElementById('encrypt-form').classList.remove('hidden');
+            } else if (type === 'decrypt') {
+                document.getElementById('decrypt-form').classList.remove('hidden');
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>Image Encryption & Decryption</h2>
+        <p>Select an option:</p>
+        <button class="btn" onclick="showForm('encrypt')">Encrypt Image</button>
+        <button class="btn" onclick="showForm('decrypt')">Decrypt Image</button>
+        
+        <form id="encrypt-form" class="hidden" action="/encrypt" method="post" enctype="multipart/form-data">
+            <h3>Encrypt Image</h3>
+            <input type="file" name="image" required><br><br>
+            <input type="text" name="message" placeholder="Enter your message" required><br><br>
+            <input type="password" name="password" placeholder="Enter password" required><br><br>
+            <button class="btn" type="submit">Encrypt</button>
+        </form>
+        
+        <form id="decrypt-form" class="hidden" action="/decrypt" method="post" enctype="multipart/form-data">
+            <h3>Decrypt Image</h3>
+            <input type="file" name="encrypted_image" required><br><br>
+            <input type="password" name="password" placeholder="Enter password" required><br><br>
+            <button class="btn" type="submit">Decrypt</button>
+        </form>
+    </div>
+</body>
+</html>
